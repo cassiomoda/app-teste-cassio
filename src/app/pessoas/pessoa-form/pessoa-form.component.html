@@ -5,24 +5,141 @@
     <form [formGroup]="form" class="min-width">
       <br>
       <mat-form-field appearance="outline" class="full-width">
-        <input matInput placeholder="Nome" formControlName="nome" />
+        <mat-label> Nome </mat-label>
+        <input matInput formControlName="nome" required />
+      </mat-form-field>
+
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label> CPF </mat-label>
+          <input matInput formControlName="cpf" required pattern="\d{3}.\d{3}.\d{3}-\d{2}" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label> RG </mat-label>
+          <input matInput formControlName="rg" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label> Data Nascimento </mat-label>
+          <input matInput formControlName="data_nasc" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label> Sexo </mat-label>
+          <!-- <input matInput formControlName="sexo" /> -->
+          <mat-select formControlName="sexo">
+            <mat-option value="Feminino"> Feminio </mat-option>
+            <mat-option value="Masculino"> Masculino </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label> Nome da mãe </mat-label>
+        <input matInput formControlName="mae" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
-        <input matInput placeholder="Cpf" formControlName="cpf" />
+        <mat-label> Nome do pai </mat-label>
+        <input matInput formControlName="pai" />
       </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label> E-mail </mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label> CEP </mat-label>
+        <input matInput formControlName="cep" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label> Endereço </mat-label>
+        <input matInput formControlName="endereco" />
+      </mat-form-field>
+
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label> Número </mat-label>
+          <input matInput formControlName="numero" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label> Bairro </mat-label>
+          <input matInput formControlName="bairro" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label> Cidade </mat-label>
+        <input matInput formControlName="cidade" />
+      </mat-form-field>
+
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label> Estado </mat-label>
+          <input matInput formControlName="estado" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label> Telefone fixo </mat-label>
+          <input matInput formControlName="telefone_fixo" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label> Celular </mat-label>
+          <input matInput formControlName="celular" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label> Altura </mat-label>
+          <input matInput formControlName="altura" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label> Peso </mat-label>
+          <input matInput formControlName="peso" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label> Tipo sanguineo </mat-label>
+          <input matInput formControlName="tipo_sanguineo" />
+        </mat-form-field>
+      </div>
     </form>
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-stroked-button (click)="onCancel()">
-      <mat-icon color="warn">close</mat-icon>
-      Cancelar
-    </button>
+    <div class="actions">
+      <button mat-stroked-button (click)="onCancel()">
+        <mat-icon color="warn">close</mat-icon>
+        Cancelar
+      </button>
 
-    <button mat-stroked-button color="primary" (click)="onSubmit()">
-      <mat-icon>done</mat-icon>
-      Salvar
-    </button>
+      <button mat-stroked-button color="primary" (click)="onSubmit()">
+        <mat-icon>done</mat-icon>
+        Salvar
+      </button>
+    </div>
   </mat-card-actions>
 </mat-card>
