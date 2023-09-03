@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { PessoaService } from './../pessoa.service';
 import { Pessoa } from '../model/pessoa';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pessoas',
@@ -16,16 +17,21 @@ export class PessoasComponent implements OnInit {
   displayedColumns: string[];
   pessoasObservable: Observable<Pessoa[]>;
 
-  constructor(private pessoaService: PessoaService, public dialog: MatDialog) {
+  constructor(
+    private pessoaService: PessoaService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    public dialog: MatDialog
+  ) {
     this.displayedColumns = [
       'nome',
       'cpf',
       'data_nasc',
       'sexo',
-      'email',
       'cidade',
       'estado',
       'tipo_sanguineo',
+      'actions',
     ];
     this.pessoasObservable = this.pessoaService.listarPessoas().pipe(
       catchError((error) => {
@@ -38,8 +44,12 @@ export class PessoasComponent implements OnInit {
 
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
-      data: errorMsg
+      data: errorMsg,
     });
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], {relativeTo: this.activatedRoute});
   }
 
   ngOnInit(): void {

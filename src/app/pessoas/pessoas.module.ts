@@ -5,10 +5,12 @@ import { PessoasRoutingModule } from './pessoas-routing.module';
 import { PessoasComponent } from './pessoas/pessoas.component';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { SharedModule } from '../shared/shared.module';
+import { PessoaFormComponent } from './pessoa-form/pessoa-form.component';
 
 @NgModule({
   declarations: [
-    PessoasComponent
+    PessoasComponent,
+    PessoaFormComponent
   ],
   imports: [
     CommonModule,
