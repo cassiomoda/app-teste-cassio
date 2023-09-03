@@ -1,1 +1,28 @@
-<p>pessoa-form works!</p>
+<mat-card>
+  <mat-card-content>
+    <mat-toolbar> Cadastrar Doador </mat-toolbar>
+
+    <form [formGroup]="form" class="min-width">
+      <br>
+      <mat-form-field appearance="outline" class="full-width">
+        <input matInput placeholder="Nome" formControlName="nome" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <input matInput placeholder="Cpf" formControlName="cpf" />
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-stroked-button (click)="onCancel()">
+      <mat-icon color="warn">close</mat-icon>
+      Cancelar
+    </button>
+
+    <button mat-stroked-button color="primary" (click)="onSubmit()">
+      <mat-icon>done</mat-icon>
+      Salvar
+    </button>
+  </mat-card-actions>
+</mat-card>
