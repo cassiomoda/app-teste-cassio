@@ -7,11 +7,15 @@ import { PessoasComponent } from './pessoas/pessoas.component';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { SharedModule } from '../shared/shared.module';
 import { PessoaFormComponent } from './pessoa-form/pessoa-form.component';
+import { PessoaListaComponent } from './pessoa-lista/pessoa-lista.component';
+import { PessoaProcessarComponent } from './pessoa-processar/pessoa-processar.component';
 
 @NgModule({
   declarations: [
     PessoasComponent,
-    PessoaFormComponent
+    PessoaFormComponent,
+    PessoaListaComponent,
+    PessoaProcessarComponent
   ],
   imports: [
     CommonModule,

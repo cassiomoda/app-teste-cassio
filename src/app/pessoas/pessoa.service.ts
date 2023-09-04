@@ -15,8 +15,18 @@ export class PessoaService {
   }
 
   listarPessoas() {
-    return this.httpClient.get<Pessoa[]>(this.urlApi).pipe(
-      tap(lista => console.log(lista))
-    );
+    return this.httpClient.get<Pessoa[]>(this.urlApi);
+  }
+
+  getById(id: string) {
+    return this.httpClient.get<Pessoa>(`${this.urlApi}/${id}`);
+  }
+
+  salvarPessoa(pessoa: Partial<Pessoa>){
+    return this.httpClient.post(this.urlApi, pessoa);
+  }
+
+  deletarPessoa(id: number) {
+    return this.httpClient.delete(`${this.urlApi}/${id}`);
   }
 }

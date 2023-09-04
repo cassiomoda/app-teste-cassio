@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-toolbar> Processar lista de doadores </mat-toolbar>
+
+  <mat-card-content>
+    <br>
+
+    <form [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Informe a lista de doadores em formato Json</mat-label>
+        <textarea matInput rows="15" formControlName="json_lista_doadores"></textarea>
+      </mat-form-field>
+
+      <div class="actions">
+        <section class="example-section" [formGroup]="form">
+          <mat-checkbox formControlName="gravar_doadores"> Salvar doadores? </mat-checkbox>
+        </section>
+
+        <div>
+          <button mat-stroked-button (click)="onCancel()">
+            <mat-icon color="warn">close</mat-icon>
+            Cancelar
+          </button>
+
+          <button mat-stroked-button color="primary" (click)="onProcess()">
+            <mat-icon>done</mat-icon>
+            Processar
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
