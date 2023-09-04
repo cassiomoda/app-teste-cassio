@@ -87,6 +87,16 @@ export class PessoaFormComponent {
   }
 
   onSubmit() {
+    if (!this.form.value.nome) {
+      this.snackBar.open('O nome precisa ser informado.', '', {duration: 5000});
+      return;
+    }
+
+    if (!this.form.value.cpf) {
+      this.snackBar.open('O CPF precisa ser informado.', '', {duration: 5000});
+      return;
+    }
+
     this.pessoaService.salvarPessoa(this.form.value).subscribe({
       next: (resultado) => this.onSuccess(),
       error: (erro) => this.onError('Erro ao tentar salvar Doador.', erro),

@@ -6,7 +6,7 @@ import { PessoaFormComponent } from './pessoa-form/pessoa-form.component';
 const routes: Routes = [
   { path: '', component: PessoasComponent },
   { path: 'new', component: PessoaFormComponent },
-  { path: 'edit/:id', component: PessoaFormComponent }
+  { path: 'edit/:id', component: PessoaFormComponent },
 ];
 
 @NgModule({

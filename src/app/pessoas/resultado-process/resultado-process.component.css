@@ -1,0 +1,29 @@
+mat-card-header{
+  font-size: large;
+  background-color: gainsboro;
+  height: 60px;
+}
+
+mat-card-actions{
+  display: flex;
+  justify-content: space-around;
+}
+
+th{
+  text-align: left;
+  height: 50px;
+}
+
+td{
+  height: 35px;
+}
+
+.result-card{
+  width: 18%;
+  margin-top: 10px;
+}
+
+.result-div{
+  display: flex;
+  justify-content: space-evenly;
+}

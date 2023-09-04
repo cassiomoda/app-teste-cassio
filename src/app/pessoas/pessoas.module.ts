@@ -9,13 +9,15 @@ import { SharedModule } from '../shared/shared.module';
 import { PessoaFormComponent } from './pessoa-form/pessoa-form.component';
 import { PessoaListaComponent } from './pessoa-lista/pessoa-lista.component';
 import { PessoaProcessarComponent } from './pessoa-processar/pessoa-processar.component';
+import { ResultadoProcessComponent } from './resultado-process/resultado-process.component';
 
 @NgModule({
   declarations: [
     PessoasComponent,
     PessoaFormComponent,
     PessoaListaComponent,
-    PessoaProcessarComponent
+    PessoaProcessarComponent,
+    ResultadoProcessComponent
   ],
   imports: [
     CommonModule,

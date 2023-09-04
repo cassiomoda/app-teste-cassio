@@ -1,0 +1,127 @@
+<mat-card>
+    <mat-toolbar> Dados dos doadores: </mat-toolbar>
+
+    <mat-card-content>
+      <div class="result-div" *ngIf="resultadoObservable | async as resultado; else loading">
+        <!-- Doadores por estado -->
+        <mat-card class="result-card">
+          <mat-card-header>
+            Doadores por Estado:
+          </mat-card-header>
+
+          <mat-card-content>
+            <table class="full-width">
+              <thead>
+                <th> Estado </th> <th> Quantidade </th>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let registro of resultado.qtdDoadoresPorEstado | keyvalue">
+                  <td> {{ registro.key }} </td> <td> {{ registro.value }} </td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-card-content>
+        </mat-card>
+        <!-- -->
+
+        <!-- IMC Por Faixa de Idade -->
+        <mat-card class="result-card">
+          <mat-card-header>
+            IMC por Faixa de Idade:
+          </mat-card-header>
+
+          <mat-card-content>
+            <table class="full-width">
+              <thead>
+                <th> Idade </th> <th> IMC </th>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let registro of resultado.imcMedioPorFaixaIdade | keyvalue">
+                  <td> {{ registro.key }} </td> <td> {{ registro.value.toFixed(2) }} </td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-card-content>
+        </mat-card>
+        <!-- -->
+
+        <!-- Percentual de Obesos por Sexo -->
+        <mat-card class="result-card">
+          <mat-card-header>
+            Percentual de Obesos por Sexo:
+          </mat-card-header>
+
+          <mat-card-content>
+            <table class="full-width">
+              <thead>
+                <th> Sexo </th> <th> Percentual </th>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let registro of resultado.percentualObesosPorSexo | keyvalue">
+                  <td> {{ registro.key }} </td> <td> {{ registro.value.toFixed(2) }} </td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-card-content>
+        </mat-card>
+        <!-- -->
+
+        <!-- Media de Idade por Tipo Sanguineo -->
+        <mat-card class="result-card">
+          <mat-card-header>
+            Media de Idade Por Tipo Sanguineo:
+          </mat-card-header>
+
+          <mat-card-content>
+            <table class="full-width">
+              <thead>
+                <th> Tipo Sanguineo </th> <th> Media </th>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let registro of resultado.mediaIdadePorTipoSanguineo | keyvalue">
+                  <td> {{ registro.key }} </td> <td> {{ registro.value.toFixed(2) }} </td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-card-content>
+        </mat-card>
+        <!-- -->
+
+        <!-- Quantidade de Possiveis Doadores para cada Tipo Sanguineo -->
+        <mat-card class="result-card">
+          <mat-card-header>
+            Quantidade de Doadores por Tipo Sanguineo:
+          </mat-card-header>
+
+          <mat-card-content>
+            <table class="full-width">
+              <thead>
+                <th> Tipo Sanguineo </th> <th> Quantidade </th>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let registro of resultado.qtdPossiveisDoadoresPorTipoSanguineo | keyvalue">
+                  <td> {{ registro.key }} </td> <td> {{ registro.value }} </td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-card-content>
+        </mat-card>
+        <!-- -->
+      </div>
+
+      <ng-template #loading>
+        <div class="loading-spinner">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <button mat-stroked-button color="primary" (click)="onClose()"> Fechar </button>
+    </mat-card-actions>
+</mat-card>

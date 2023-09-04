@@ -13,6 +13,7 @@
         <mat-form-field appearance="outline">
           <mat-label> CPF </mat-label>
           <input matInput formControlName="cpf" required pattern="\d{3}.\d{3}.\d{3}-\d{2}" />
+          <mat-hint align="start"> Ex.: 123.456.789.-89 </mat-hint>
         </mat-form-field>
       </div>
 
@@ -26,7 +27,8 @@
       <div class="form-field">
         <mat-form-field appearance="outline">
           <mat-label> Data Nascimento </mat-label>
-          <input matInput formControlName="data_nasc" />
+          <input matInput formControlName="data_nasc" pattern="\d{2}/\d{2}/\d{4}" />
+          <mat-hint align="start"> Ex.: 31/12/1990 </mat-hint>
         </mat-form-field>
       </div>
 
@@ -54,11 +56,13 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label> E-mail </mat-label>
         <input matInput formControlName="email" />
+        <mat-hint align="start"> Ex.: joaos2dasilva@gmail.com </mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label> CEP </mat-label>
-        <input matInput formControlName="cep" />
+        <input matInput formControlName="cep" pattern="\d{5}-\d{3}" />
+        <mat-hint align="start"> Ex.: 12345-678 </mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
@@ -89,20 +93,23 @@
         <mat-form-field appearance="outline">
           <mat-label> Estado </mat-label>
           <input matInput formControlName="estado" />
+          <mat-hint align="start"> Ex.: SP </mat-hint>
         </mat-form-field>
       </div>
 
       <div class="form-field">
         <mat-form-field appearance="outline">
           <mat-label> Telefone fixo </mat-label>
-          <input matInput formControlName="telefone_fixo" />
+          <input matInput formControlName="telefone_fixo" pattern="(\d{2}) \d{4}-\d{4}" />
+          <mat-hint align="start"> Ex.: (17) 1234-5678 </mat-hint>
         </mat-form-field>
       </div>
 
       <div class="form-field">
         <mat-form-field appearance="outline">
           <mat-label> Celular </mat-label>
-          <input matInput formControlName="celular" />
+          <input matInput formControlName="celular" pattern="+\d{2} (\d{2}) \d{5}-\d{4}" />
+          <mat-hint align="start"> Ex.: +55 (17) 91234-5678 </mat-hint>
         </mat-form-field>
       </div>
 
@@ -110,6 +117,7 @@
         <mat-form-field appearance="outline">
           <mat-label> Altura </mat-label>
           <input matInput formControlName="altura" />
+          <mat-hint align="start"> Ex.: 1.82 </mat-hint>
         </mat-form-field>
       </div>
 
@@ -117,13 +125,24 @@
         <mat-form-field appearance="outline">
           <mat-label> Peso </mat-label>
           <input matInput formControlName="peso" />
+          <mat-hint align="start"> Ex.: 82.5 </mat-hint>
         </mat-form-field>
       </div>
 
       <div class="form-field">
         <mat-form-field appearance="outline">
           <mat-label> Tipo sanguineo </mat-label>
-          <input matInput formControlName="tipo_sanguineo" />
+          <mat-select formControlName="tipo_sanguineo">
+            <mat-option value="">  </mat-option>
+            <mat-option value="A+"> A+ </mat-option>
+            <mat-option value="A-"> A- </mat-option>
+            <mat-option value="AB+"> AB+ </mat-option>
+            <mat-option value="AB-"> AB- </mat-option>
+            <mat-option value="B+"> B+ </mat-option>
+            <mat-option value="B-"> B- </mat-option>
+            <mat-option value="O+"> O+ </mat-option>
+            <mat-option value="O-"> O- </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
     </form>
