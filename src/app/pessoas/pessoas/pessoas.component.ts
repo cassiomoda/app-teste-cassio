@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { PessoaService } from './../pessoa.service';
 import { Pessoa } from '../model/pessoa';
-import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import { UtilService } from 'src/app/util.service';
 
 @Component({
   selector: 'app-pessoas',
@@ -15,28 +13,25 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
   styleUrls: ['./pessoas.component.css', '../../app.component.css'],
 })
 export class PessoasComponent {
-  pessoasObservable: Observable<Pessoa[]>;
+  pessoasObservable: Observable<Pessoa[]> | undefined;
 
   constructor(
     private pessoaService: PessoaService,
+    private utilService: UtilService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar,
-    public dialog: MatDialog
   ) {
+    this.carregarLista();
+  }
+
+  carregarLista() {
     this.pessoasObservable = this.pessoaService.listarPessoas().pipe(
       catchError((error) => {
         console.log(error);
-        this.onError('Erro ao carregar lista de doadores.');
+        this.utilService.onError('Erro ao carregar lista de doadores.');
         return of([]);
       })
     );
-  }
-
-  onError(errorMsg: string) {
-    this.dialog.open(ErrorDialogComponent, {
-      data: errorMsg,
-    });
   }
 
   onAdd() {
@@ -50,10 +45,13 @@ export class PessoasComponent {
   onDelete(id: number) {
     this.pessoaService.deletarPessoa(id).subscribe({
       next: (resultado) => {
-        this.snackBar.open('Pessoa deletada com sucesso!!!', '', {duration: 5000});
-        window.location.reload();
+        this.utilService.exibirMensagem('Pessoa deletada com sucesso!!!');
+        this.carregarLista();
       },
-      error: (erro) => this.onError(`Erro ao tentar deletar pessoa. Erro: ${erro}`),
+      error: (erro) => {
+        console.log(erro);
+        this.utilService.onError('Erro ao tentar deletar pessoa. ');
+      },
     });
   }
 }

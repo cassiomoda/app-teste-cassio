@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 import { PessoaService } from '../pessoa.service';
-import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
-import { ActivatedRoute } from '@angular/router';
+import { UtilService } from 'src/app/util.service';
 
 @Component({
   selector: 'app-pessoa-form',
@@ -19,10 +17,9 @@ export class PessoaFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private pessoaService: PessoaService,
-    private snackBar: MatSnackBar,
+    private utilService: UtilService,
     private location: Location,
     private activatedRoute: ActivatedRoute,
-    public dialog: MatDialog
   ) {
     this.form = this.formBuilder.group({
       id: new FormControl<number>(0),
@@ -77,7 +74,10 @@ export class PessoaFormComponent {
           peso: pessoa.peso,
           tipo_sanguineo: pessoa.tipo_sanguineo,
         }),
-        error: (erro) => this.onError('Erro ao localizar doador.', erro),
+        error: (erro) => {
+          console.log(erro);
+          this.utilService.onError('Erro ao localizar doador.');
+        },
       });
     }
   }
@@ -88,30 +88,26 @@ export class PessoaFormComponent {
 
   onSubmit() {
     if (!this.form.value.nome) {
-      this.snackBar.open('O nome precisa ser informado.', '', {duration: 5000});
+      this.utilService.exibirMensagem('O nome precisa ser informado.');
       return;
     }
 
     if (!this.form.value.cpf) {
-      this.snackBar.open('O CPF precisa ser informado.', '', {duration: 5000});
+      this.utilService.exibirMensagem('O CPF precisa ser informado.');
       return;
     }
 
     this.pessoaService.salvarPessoa(this.form.value).subscribe({
       next: (resultado) => this.onSuccess(),
-      error: (erro) => this.onError('Erro ao tentar salvar Doador.', erro),
+      error: (erro) => {
+        console.log(erro);
+        this.utilService.onError('Erro ao tentar salvar Doador.')
+      },
     });
   }
 
   onSuccess() {
-    this.snackBar.open('Pessoa salva com sucesso!!!', '', {duration: 5000});
+    this.utilService.exibirMensagem('Pessoa salva com sucesso!!!')
     this.onCancel();
-  }
-
-  onError(errorMsg: string, erro: string) {
-    console.log(erro);
-    this.dialog.open(ErrorDialogComponent, {
-      data: errorMsg,
-    });
   }
 }

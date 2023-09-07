@@ -11,7 +11,7 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   onProcess() {
