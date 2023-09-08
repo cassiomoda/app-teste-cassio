@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
@@ -23,8 +23,8 @@ export class PessoaFormComponent {
   ) {
     this.form = this.formBuilder.group({
       id: new FormControl<number>(0),
-      nome: new FormControl<string>('', {nonNullable: true}),
-      cpf: new FormControl<string>('', {nonNullable: true}),
+      nome: new FormControl<string>('', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]),
+      cpf: new FormControl<string>('', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]),
       rg: new FormControl<string>(''),
       data_nasc: new FormControl<string>(''),
       sexo: new FormControl<string>(''),
@@ -80,6 +80,26 @@ export class PessoaFormComponent {
         },
       });
     }
+  }
+
+  getErrorMessage(nomeCampo: string): string {
+    const campo = this.form.get(nomeCampo);
+
+    if (campo?.hasError('required')) {
+      return `O campo: ${nomeCampo}, deve ser informado.`;
+    }
+
+    if (campo?.hasError('minlength')) {
+      const qtdCaractresRequerido = campo?.errors ? campo?.errors['minLength']['requiredLength'] : 3;
+      return `O campo: ${nomeCampo}, precisa ter pelo menos ${qtdCaractresRequerido} caracteres.`;
+    }
+
+    if (campo?.hasError('maxlength')) {
+      const qtdCaractresRequerido = campo.errors ? campo.errors['maxLength']['requiredLength'] : 255;
+      return `O campo: ${nomeCampo}, excedeu a quantidade maxima de ${qtdCaractresRequerido} caracteres.`;
+    }
+
+    return '';
   }
 
   onCancel() {

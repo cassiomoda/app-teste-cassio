@@ -6,14 +6,17 @@
       <br>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label> Nome </mat-label>
-        <input matInput formControlName="nome" required />
+        <input matInput formControlName="nome" #nome />
+        <mat-hint align="end"> {{nome.value.length || 0}}/255 </mat-hint>
+        <mat-error *ngIf="form.value.nome?.invalid">{{getErrorMessage('nome')}}</mat-error>
       </mat-form-field>
 
       <div class="form-field">
         <mat-form-field appearance="outline">
           <mat-label> CPF </mat-label>
-          <input matInput formControlName="cpf" required pattern="\d{3}.\d{3}.\d{3}-\d{2}" />
+          <input matInput formControlName="cpf" pattern="\d{3}.\d{3}.\d{3}-\d{2}" />
           <mat-hint align="start"> Ex.: 123.456.789.-89 </mat-hint>
+          <mat-error *ngIf="form.value.cpf?.invalid">{{getErrorMessage('cpf')}}</mat-error>
         </mat-form-field>
       </div>
 

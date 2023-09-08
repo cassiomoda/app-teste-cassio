@@ -25,7 +25,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatInputModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ]
 })
 export class AppMaterialModule { }
