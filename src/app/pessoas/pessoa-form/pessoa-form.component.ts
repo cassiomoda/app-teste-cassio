@@ -107,16 +107,6 @@ export class PessoaFormComponent {
   }
 
   onSubmit() {
-    if (!this.form.value.nome) {
-      this.utilService.exibirMensagem('O nome precisa ser informado.');
-      return;
-    }
-
-    if (!this.form.value.cpf) {
-      this.utilService.exibirMensagem('O CPF precisa ser informado.');
-      return;
-    }
-
     this.pessoaService.salvarPessoa(this.form.value).subscribe({
       next: (resultado) => this.onSuccess(),
       error: (erro) => {
